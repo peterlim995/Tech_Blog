@@ -1,0 +1,28 @@
+
+
+<div class="row">
+  <div class="col-auto">
+    <h2>{{title}}!</h2>
+    {{!-- <p>Created by {{user.name}} on {{format_date date_created}}</p> --}}
+  </div>
+  <div>
+    <p>{{content}}</p>
+  </div>
+</div>
+
+  {{#if comments.length}}
+  <div class="col-md-6 project-list">
+    <h3>Comments:</h3>
+
+    {{#each comments as |comment|}}
+    <div>    
+    <p>{{comment.comment}}</p>
+    <p>{{format_date comment.date_created}}</p>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+
+{{!-- <button id="add-blog" onclick="window.location.href='/blog'">Add blog</button> --}}
