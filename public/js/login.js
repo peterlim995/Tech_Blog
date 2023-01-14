@@ -17,7 +17,9 @@ const loginFormHandler = async (event) => {
       // If successful, redirect the browser to the home page
       document.location.replace('/dashboard');
     } else {
-      alert(response.statusText);
+      const res = await response.json();
+      console.log('response: ',res.message);
+      alert(res.message);
     }
   }
 };

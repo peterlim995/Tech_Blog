@@ -12,6 +12,9 @@ router.get('/', async (req, res) => {
           attributes: ['name'],
         },
       ],
+      order:[
+        ['date_created','DESC' ]
+      ]
     });
 
     // Serialize data so the template can read it
@@ -40,6 +43,9 @@ router.get('/blog/:id', async (req, res) => {
           attributes: ['name'],
         },
       ],
+      order: [
+        [{model: Comment}, 'date_created', 'DESC'],
+      ]
     });
 
     const blog = blogData.get({ plain: true });
@@ -94,6 +100,9 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Blog }],
+      // order:[
+      //   ['date_created','DESC' ]
+      // ]
     });
 
     const user = userData.get({ plain: true });
