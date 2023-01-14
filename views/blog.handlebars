@@ -1,18 +1,19 @@
+
+
+
+
+
 <form class='new-blog-form'>
-  <div class='form-group'>
-    <label for='blog-title'>Blog Title:</label>
-    <input
-      class='form-input'
-      type='text'
-      id='blog-title'
-      name='blog-title'
-    />
-  </div>
-  <div class='form-group'>
-    <label for='content'>Content</label>
-    <textarea class='form-input' id='content' name='content'></textarea>
-  </div>
-  <div class='form-group'>
+    <div class="mb-3">
+  <label for="blog-title" class="form-label">Blog Title:</label>
+  <input type="text" class="form-control" id="blog-title" placeholder="Title">
+</div>
+<div class="mb-3">
+  <label for="content" class="form-label">Content:</label>
+  <textarea class="form-control" id="content" rows="3" placeholder="Content"></textarea>
+</div>
+
+  <div class="d-flex justify-content-center p-3">
     <button type='submit' class='btn btn-primary'>Create</button>
   </div>
 

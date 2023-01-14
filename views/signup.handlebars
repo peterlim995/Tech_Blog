@@ -1,3 +1,47 @@
+<div class='row pt-5'>
+  <div class='col-4'></div>
+  <div class='col-4'>
+    <form class='signup-form form-signin'>
+      <h1 class='h3 mb-3 font-weight-normal text-center'>Signup</h1>      
+      <label for='name-signup' class='sr-only'>Name</label>
+      <input
+        type='text'
+        id='name-signup'
+        class='form-control'
+        placeholder='User name'
+        required
+        autofocus
+      />
+      <label for='email-signup' class='sr-only'>Email address</label>
+      <input
+        type='email'
+        id='email-signup'
+        class='form-control'
+        placeholder='Email address'
+        required
+        autofocus
+      />
+      <label for='password-signup' class='sr-only'>Password</label>
+      <input
+        type='password'
+        id='password-signup'
+        class='form-control'
+        placeholder='Password'
+        required
+      />
+      <div class='d-grid gap-2'>
+        <button class='my-3 btn btn-lg btn-primary btn-block' type='submit'>Signup</button>
+      </div>
+      <p class='text-muted text-center'><a href='/login'>Log In Instead</a></p>
+    </form>
+  </div>
+  <div class='col-4'></div>
+</div>
+
+<script src='./js/login.js'></script>
+
+{{!-- 
+
 <div class="row">
   
   <div class="col-md-6">
@@ -22,6 +66,6 @@
     </form>
   </div>
   <a href="/login">Log In Instead</a>
-</div>
+</div> --}}
 
 <script src="./js/signup.js"></script>

@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      blogs, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      blogs,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -33,7 +33,7 @@ router.get('/blog/:id', async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: ['comment','date_created'],
+          attributes: ['comment', 'date_created', 'user_id'],
         },
         {
           model: User,
@@ -43,8 +43,41 @@ router.get('/blog/:id', async (req, res) => {
     });
 
     const blog = blogData.get({ plain: true });
-    console.log("blog",blog);
+    console.log("blog", blog);
 
+    if (blog.comments.length) {
+
+      const users = blog.comments.map(comment => comment.user_id);
+
+      console.log("users: ", users);
+
+      // Getting user data for the comment
+      const userNamesData = [];
+
+
+      for (const id of users) {
+        userNamesData.push(await User.findByPk(id, {
+          attributes: { exclude: ['password'] }
+        }));
+      }
+
+      const userNames = userNamesData.map((user) => user.get({ plain: true }));
+
+
+      console.log('User Names: ', userNames);
+
+      // Update blog comment object with user name
+      for (let i = 0; i < blog.comments.length; i++) {
+        const comment = blog.comments[i];
+        const newComment = {
+          name: userNames[i].name,
+          ...comment
+        }
+        blog.comments[i] = newComment;
+      }
+
+      console.log("new Blog: ", blog);
+    }
     res.render('blog-detail', {
       ...blog,
       logged_in: req.session.logged_in
@@ -67,7 +100,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     res.render('dashboard', {
       ...user,
-      logged_in: true
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -75,8 +108,16 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/blog', withAuth, async (req, res) => {
-  res.render('blog');
+  res.render('blog', {
+    logged_in: req.session.logged_in
+  });
 });
+
+// router.get('/comment', withAuth, async (req, res) => {
+//   res.render('comment', {
+//     logged_in: req.session.logged_in
+//   });
+// });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
