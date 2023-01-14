@@ -107,6 +107,24 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+router.get('/blog/edit/:id',withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id);
+
+    const blog = blogData.get({ plain: true });
+    console.log("blog", blog);
+    
+    res.render('blog-edit', {
+      ...blog,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
 router.get('/blog', withAuth, async (req, res) => {
   res.render('blog', {
     logged_in: req.session.logged_in

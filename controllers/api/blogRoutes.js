@@ -30,26 +30,51 @@ router.post('/comment', withAuth, async (req, res) => {
   }
 });
 
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.update(
+      {        
+        title: req.body.title,
+        content: req.body.content,        
+      },
+      {
+        // Gets a book based on the book_id given in the request parameters
+        where: {
+          id: req.params.id
+        },
+      }
+    )
+    
+    if (!blogData) {
+      res.status(404).json({ message: 'No blog found with this id!' });
+      return;
+    }
+
+    res.status(200).json(blogData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
-// router.delete('/:id', withAuth, async (req, res) => {
-//   try {
-//     const projectData = await Project.destroy({
-//       where: {
-//         id: req.params.id,
-//         user_id: req.session.user_id,
-//       },
-//     });
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.destroy({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
 
-//     if (!projectData) {
-//       res.status(404).json({ message: 'No project found with this id!' });
-//       return;
-//     }
+    if (!blogData) {
+      res.status(404).json({ message: 'No blog found with this id!' });
+      return;
+    }
 
-//     res.status(200).json(projectData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.status(200).json(blogData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

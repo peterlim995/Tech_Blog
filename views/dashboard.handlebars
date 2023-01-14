@@ -1,4 +1,4 @@
-<div class='container p-5 d-grid gap-4'>
+<div class='container p-5 d-grid gap-4 blog-list'>
   <div class='d-flex justify-content-center'>
     <h2>Welcome, {{name}}!</h2>
   </div>
@@ -6,16 +6,22 @@
     <h3>Current Blogs:</h3>
     {{#each blogs as |blog|}}
       <div class='card'>
-        <div class='card-header d-flex justify-content-between'>
-          <div class='card-title'>
-            <h3><a href='/blog/{{blog.id}}'>{{blog.title}}</a></h3>
+        <div class='card-header d-flex justify-content-between align-items-center' style="height:80px">
+          <div >
+            <h5><a href='/blog/{{blog.id}}'>{{blog.title}}</a></h3>
           </div>
-          <div>
-            <p>
+          <div class='d-flex align-items-center'>
+            <p class="m-0">
               {{format_date blog.date_created}} 
+
+
               <button
-                class='btn btn-sm btn-danger'
-                data-id='{{blog.id}}'
+                class='btn btn-sm btn-info m-0'
+                data-id='{{blog.id}}' data-function="edit"
+              >EDIT</button>
+              <button
+                class='btn btn-sm btn-danger m-0'
+                data-id='{{blog.id}}' data-function="delete" onclick="window.location.href='/blog/edit/{{blog.id}}'"
               >DELETE</button>
             </p>
 
@@ -30,3 +36,5 @@
   </div>
 
 </div>
+
+<script src="./js/dashboard.js"></script>
