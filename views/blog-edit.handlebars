@@ -1,22 +1,32 @@
-
-
-
-
-
-
 <form class='edit-blog-form'>
-    <div class="mb-3">
-  <label for="blog-title" class="form-label">{{id}}Blog Title:</label>
-  <input type="text" class="form-control" id="blog-title" placeholder="Title" value="{{title}}">
-</div>
-<div class="mb-3">
-  <label for="content" class="form-label">Content:</label>
-  <textarea class="form-control" id="content" rows="3" placeholder="Content">{{content}}</textarea>
-</div>
+  <div class='mb-3'>
+    <label for='blog-title' class='form-label'>Blog Title:</label>
+    <input
+      type='text'
+      class='form-control'
+      id='blog-title'
+      placeholder='Title'
+      value='{{title}}'
+    />
+  </div>
+  <div class='mb-3'>
+    <label for='content' class='form-label'>Content:</label>
+    <textarea
+      class='form-control'
+      id='content'
+      rows='3'
+      placeholder='Content'
+    >{{content}}</textarea>
+  </div>
 
-  <div class="d-flex justify-content-evenly p-3">
-    <button type='submit' class='btn btn-primary'>Update</button>
-    <button type='click' class='btn btn-primary btn-warning' onclick="window.location.href='/dashboard'">Cancel</button>
+  <div class='d-flex justify-content-evenly p-3'>
+    <button
+      type='submit'
+      class='btn btn-primary'
+      id='update' data-function='update'
+    >Update</button>
+    <a href="/dashboard"><div class='btn btn-primary btn-warning'>Cancel
+    </div></a>
   </div>
 
 </form>

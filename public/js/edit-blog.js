@@ -1,9 +1,17 @@
-const newBlgHandler = async (event) => {
+
+
+
+const editBlgHandler = async (event) => {
     event.preventDefault();
   
     const title = document.querySelector('#blog-title').value.trim();
     const content = document.querySelector('#content').value.trim();
-      
+
+    // const btnFunction = event.target.getAttribute('data-function');
+    
+    // console.log('event',event);
+    // console.log('data-function: ',btnFunction);
+
     if (title && content) {
       
       const blog_id = window.location.pathname.split('/').reverse()[0];
@@ -27,4 +35,6 @@ const newBlgHandler = async (event) => {
 
   document
   .querySelector('.edit-blog-form')
-  .addEventListener('submit', newBlgHandler);
+  .addEventListener('submit', editBlgHandler);
+
+  
