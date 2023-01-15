@@ -6,25 +6,28 @@
     <h3>Current Blogs:</h3>
     {{#each blogs as |blog|}}
       <div class='card'>
-        <div class='card-header d-flex justify-content-between align-items-center' style="height:80px">
-          <div >
-            <h5><a href='/blog/{{blog.id}}'>{{blog.title}}</a></h3>
-          </div>
-          <div class='d-flex align-items-center'>
-            <p class="m-0">
-              {{format_date blog.date_created}} 
+        <div class='card-header' >
+          <div class='row'>
+            <div class='col-12 col-md-7'>
+              <h5><a href='/blog/{{blog.id}}'>{{blog.title}}</a></h5>
+            </div>
+            <div class='col-12 col-md-5  d-flex justify-content-end align-items-center'>
+              <p class='m-0'>
+                {{format_date blog.date_created}}
 
-
-              <button
-                class='btn btn-sm btn-info m-0'
-                data-id='{{blog.id}}' data-function="edit"
-              >EDIT</button>
-              <button
-                class='btn btn-sm btn-danger m-0'
-                data-id='{{blog.id}}' data-function="delete" onclick="window.location.href='/blog/edit/{{blog.id}}'"
-              >DELETE</button>
-            </p>
-
+                <button
+                  class='btn btn-sm btn-info m-0'
+                  data-id='{{blog.id}}'
+                  data-function='edit'
+                >EDIT</button>
+                <button
+                  class='btn btn-sm btn-danger m-0'
+                  data-id='{{blog.id}}'
+                  data-function='delete'
+                  onclick="window.location.href='/blog/edit/{{blog.id}}'"
+                >DELETE</button>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -32,9 +35,13 @@
     {{/each}}
   {{/if}}
   <div class='d-flex justify-content-center p-3'>
-    <button class='btn btn-primary' id='add-blog' onclick="window.location.href='/blog'">Add blog</button>
+    <button
+      class='btn btn-primary'
+      id='add-blog'
+      onclick="window.location.href='/blog'"
+    >Add blog</button>
   </div>
 
 </div>
 
-<script src="./js/dashboard.js"></script>
+<script src='./js/dashboard.js'></script>

@@ -2,14 +2,20 @@
 <div class='container p-5 d-grid gap-4'>
   {{#each blogs as |blog|}}
     <div class='card'>
-      <div class='card-header d-flex justify-content-between'>
-        <h5 class='card-title'><a
-            href='/blog/{{blog.id}}'
-          >{{blog.title}}</a></h5>
-        <p>Posted by
-          {{blog.user.name}}
-          on
-          {{format_date blog.date_created}}</p>
+      <div class='card-header'>
+        <div class='row'>
+          <div class='col-12 col-md-7'>
+            <h5 class='card-title'><a
+                href='/blog/{{blog.id}}'
+              >{{blog.title}}</a></h5>
+          </div>
+          <div class='col-12 col-md-5 d-flex justify-content-end'>
+            <p>Posted by
+              {{{get_emoji}}}{{blog.user.name}}
+              on
+              {{format_date blog.date_created}}</p>
+          </div>
+        </div>
       </div>
       <div class='card-body'>
         <p class='card-text'>
