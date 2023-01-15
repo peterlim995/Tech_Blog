@@ -100,9 +100,9 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Blog }],
-      // order:[
-      //   ['date_created','DESC' ]
-      // ]
+      order: [
+        [{model: Blog}, 'date_created', 'DESC'],
+      ]
     });
 
     const user = userData.get({ plain: true });

@@ -5,32 +5,37 @@
     "user_id": 1
   },
   {
-    "comment": "dkgljslkdjglsjdglsjdlgjsldkjg",
+    "comment": "I like it",
     "blog_id": 1,
     "user_id": 1
   },
   {
-    "comment": "lksjdeglksjhdoiwjeljwlejlweg",
+    "comment": "Good",
     "blog_id": 1,
     "user_id": 3
   },
   {
-    "comment": "dfslkjgwoiujwoiejoiwjeg",
+    "comment": "I have different idea",
+    "blog_id": 1,
+    "user_id": 2
+  },
+  {
+    "comment": "I love it",
     "blog_id": 2,
     "user_id": 1
   },
   {
-    "comment": "dklgjwoiejgowijeoglwe",
+    "comment": "Agree",
     "blog_id": 2,
     "user_id": 2
   },
   {
-    "comment": "djmgoiwjeoijgwoijeoijeoijwoieg",
+    "comment": "Good job",
     "blog_id": 2,
     "user_id": 3
   },
   {
-    "comment": "sdgowjeojwoejgw",
+    "comment": "I learn it",
     "blog_id": 3,
     "user_id": 1
   }
