@@ -32,11 +32,19 @@ router.get('/', async (req, res) => {
 
 router.get('/blog/:id', async (req, res) => {
   try {
-    const blogData = await Blog.findByPk(req.params.id, {
+    const blogData = await Blog.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: ['id', 'title', 'content', 'date_created'],
       include: [
         {
           model: Comment,
-          attributes: ['comment', 'date_created', 'user_id'],
+          attributes: ['id','comment', 'date_created', 'blog_id', 'user_id'],
+          include: {
+            model: User,
+            attributes:['name']
+          }
         },
         {
           model: User,
@@ -51,43 +59,45 @@ router.get('/blog/:id', async (req, res) => {
     const blog = blogData.get({ plain: true });
     console.log("blog", blog);
 
-    if (blog.comments.length) {
+    // if (blog.comments.length) {
 
-      const users = blog.comments.map(comment => comment.user_id);
+    //   const users = blog.comments.map(comment => comment.user_id);
 
-      console.log("users: ", users);
+    //   console.log("users: ", users);
 
-      // Getting user data for the comment
-      const userNamesData = [];
-
-
-      for (const id of users) {
-        userNamesData.push(await User.findByPk(id, {
-          attributes: { exclude: ['password'] }
-        }));
-      }
-
-      const userNames = userNamesData.map((user) => user.get({ plain: true }));
+    //   // Getting user data for the comment
+    //   const userNamesData = [];
 
 
-      console.log('User Names: ', userNames);
+    //   for (const id of users) {
+    //     userNamesData.push(await User.findByPk(id, {
+    //       attributes: { exclude: ['password'] }
+    //     }));
+    //   }
 
-      // Update blog comment object with user name
-      for (let i = 0; i < blog.comments.length; i++) {
-        const comment = blog.comments[i];
-        const newComment = {
-          name: userNames[i].name,
-          ...comment
-        }
-        blog.comments[i] = newComment;
-      }
+    //   const userNames = userNamesData.map((user) => user.get({ plain: true }));
 
-      console.log("new Blog: ", blog);
-    }
+
+    //   console.log('User Names: ', userNames);
+
+    //   // Update blog comment object with user name
+    //   for (let i = 0; i < blog.comments.length; i++) {
+    //     const comment = blog.comments[i];
+    //     const newComment = {
+    //       name: userNames[i].name,
+    //       ...comment
+    //     }
+    //     blog.comments[i] = newComment;
+    //   }
+
+    //   console.log("new Blog: ", blog);
+    // }
+
     res.render('blog-detail', {
       ...blog,
       logged_in: req.session.logged_in
     });
+
   } catch (err) {
     res.status(500).json(err);
   }
