@@ -6,6 +6,9 @@ const editBlgHandler = async (event) => {
   
     const title = document.querySelector('#blog-title').value.trim();
     const content = document.querySelector('#content').value.trim();
+    const blog_id = document.getElementById('blog_id').value
+
+
 
     // const btnFunction = event.target.getAttribute('data-function');
     
@@ -14,7 +17,7 @@ const editBlgHandler = async (event) => {
 
     if (title && content) {
       
-      const blog_id = window.location.pathname.split('/').reverse()[0];
+      // const blog_id = window.location.pathname.split('/').reverse()[0];
 
       const response = await fetch(`/api/blog/${blog_id}`, {
         method: 'PUT',
